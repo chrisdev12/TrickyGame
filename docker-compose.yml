@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  tricky_mongo_db:
+    image: "mongo:latest"
+    container_name: "tricky_db_mongo"
+    restart: "always"
+    ports:
+      - "27017:27017"
+  tricky_backend:
+    build: ./backend/
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      MONGO_CONNECTION: mongodb://db:27017
+    links:
+      - tricky_mongo_db
+  tricky_frontend:
+    build: ./frontend/
+    ports:
+      - "9090:9090"
