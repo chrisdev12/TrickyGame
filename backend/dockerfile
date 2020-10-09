@@ -1,17 +1,11 @@
 FROM node:12-stretch
 
-RUN mkdir -p /home/tick/backend
+WORKDIR /home/tricky/backend
 
-RUN chown trickyBack /home/tick/backend
-
-USER trickyBack
-
-WORKDIR /home/tick/backend
-
-COPY --chown=trickyBack:trickyBack package-lock.json package.json ./
+COPY package-lock.json package.json ./
 
 RUN npm ci
 
-COPY --chown=trickyBack:trickyBack . .
+COPY  . .
 
 CMD [ "node", "index.js"]
