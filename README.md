@@ -2,7 +2,7 @@
 
 ## Docker:
 
-Use docker-compose up to build the containers with the services that the game need to work.
+Use docker-compose up -d to build the  the services that the game need to work.
 
 ## Frontend:
 
