@@ -1,20 +1,15 @@
-const Game = require('../../models/game');
-
-const newGame = function (req) {
-  // eslint-disable-next-line no-undef
-  return new Promise((resolve, reject) => {
-    let body = req.body;
-    console.log(body);
-    let newGame = new Game({
+const newGame = async ({ body }, gameSchema) => {
+  try {
+    const newGame = new gameSchema({
       name: body.name,
       players: body.players,
     });
-    newGame.save((err, payload) => {
-      if (err) return reject(err);
+    const insertGame = await newGame.save();
 
-      return resolve(payload);
-    });
-  });
+    return insertGame;
+  } catch (error) {
+    throw error;
+  }
 };
 
 module.exports = newGame;

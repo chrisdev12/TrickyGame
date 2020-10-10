@@ -12,6 +12,11 @@ const GameSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    movesNumber: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
   },
   {
     timestamps: true,
