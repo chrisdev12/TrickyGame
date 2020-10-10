@@ -1,11 +1,17 @@
 FROM node:12-stretch
 
+RUN mkdir -p /home/tricky/backend
+
+RUN chown node /home/tricky/backend
+
+USER node
+
 WORKDIR /home/tricky/backend
 
-COPY package-lock.json package.json ./
+COPY --chown=node:node package-lock.json package.json ./
 
 RUN npm ci
 
-COPY  . .
+COPY --chown=node:node . .
 
 CMD [ "node", "index.js"]

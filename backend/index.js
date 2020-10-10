@@ -1,10 +1,12 @@
 const server = require('./server/config.js');
 const connectDb = require('./server/database.js');
+const dotenv = require('dotenv');
+dotenv.config();
 
-connectDb().then(() =>
-  server.listen(process.env.PORT, () => {
-    console.log(`API listening on port ${process.env.PORT}!`);
-    server.on('error', console.error('failed'));
-    server.on('listening', console.log('working'));
-  }),
-);
+connectDb()
+  .then(() =>
+    server.listen(process.env.API_PORT, () =>
+      console.log(`API listening on port ${process.env.API_PORT}`),
+    ),
+  )
+  .catch((err) => console.error(err));

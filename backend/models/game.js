@@ -1,15 +1,21 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const PlayerSchema = require('./player');
 const GameSchema = new Schema(
   {
-    name: { type: String, required: true, minlength: [2, 'El nombre del juego es muy corto'] },
-    players: [PlayerSchema],
+    name: {
+      type: String,
+      required: true,
+      minlength: [2, 'El nombre del juego es muy corto'],
+    },
+    players: ['PlayerSchema'],
+    finished: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
   },
 );
-const model = mongoose.model('Game', GameSchema);
 
-module.exports = model;
+module.exports = mongoose.model('GameSchema', GameSchema);
