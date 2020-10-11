@@ -1,17 +1,24 @@
-FROM node:12-stretch
+FROM node:lts-alpine as build-stage
 
-RUN mkdir -p /home/tick/backend
+RUN mkdir -p /home/tricky/frontend/app
 
-RUN chown trickyBack /home/tick/backend
+RUN chown node /home/tricky/frontend/app
 
-USER trickyBack
+USER node
 
-WORKDIR /home/tick/backend
+WORKDIR /home/tricky/frontend/app
 
-COPY --chown=trickyBack:trickyBack package-lock.json package.json ./
+COPY --chown=node:node package-lock.json package.json ./
 
 RUN npm ci
 
-COPY --chown=trickyBack:trickyBack . .
+COPY --chown=node:node . .
 
-CMD [ "node", "index.js"]
+RUN npm run build
+
+# production stage
+FROM nginx:stable-alpine as production-stage
+
+COPY --from=build-stage /home/tricky/frontend/app/dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
