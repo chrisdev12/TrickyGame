@@ -1,6 +1,5 @@
-const endGame = async ({ params }, gameSchema) => {
+const endGame = async (id, gameSchema) => {
   try {
-    let { id } = params;
     const editGame = await gameSchema.findByIdAndUpdate(
       { _id: id },
       { finished: true },

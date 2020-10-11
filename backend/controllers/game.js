@@ -5,6 +5,16 @@ const Game = require('../business/game/index');
 
 router.get('/', (req, res) => success(res, 201, 'working'));
 
+router.get('/:id', (req, res) => {
+  Game.getOne(req)
+    .then((result) => {
+      success(res, 201, result);
+    })
+    .catch(() => {
+      error(res, 404, 'Not found');
+    });
+});
+
 router.post('/', (req, res) => {
   Game.newOne(req)
     .then((result) => {
@@ -19,6 +29,16 @@ router.put('/:id', (req, res) => {
   Game.editOne(req)
     .then((result) => {
       success(res, 200, result);
+    })
+    .catch((err) => {
+      error(res, 500, err);
+    });
+});
+
+router.put('/verifyWinner/:id', (req, res) => {
+  Game.verifyWinner(req)
+    .then((result) => {
+      result ? success(res, 200, result) : error(res, 404, 'not winner found');
     })
     .catch((err) => {
       error(res, 500, err);
