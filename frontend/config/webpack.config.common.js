@@ -21,7 +21,7 @@ const webpackConfig = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        include: [helpers.root('src')],
+        include: [helpers.root('src'),/src/],
       },
       {
         test: /\.js$/,
