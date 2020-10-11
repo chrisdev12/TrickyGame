@@ -4,14 +4,15 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 const routes = [
   {
-    path: '/',
+    path: '',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '@/components/AppHome')
+    component: () => import(/* webpackChunkName: "home" */ '@/views/Home')
   },
   {
-    path: '/medium',
-    name: 'Medium',
-    component: () => import(/* webpackChunkName: "medium" */ '@/components/AppMedium')
+    path: '/game/:id',
+    name: 'Game',
+    component: () => import(/* webpackChunkName: "medium" */ '@/views/Game'),
+    props: (route) => ({ id: route.params.id }),
   }
 ];
 

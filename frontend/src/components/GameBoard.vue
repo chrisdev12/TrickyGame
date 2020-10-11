@@ -6,6 +6,6 @@
 
 <script>
 export default {
-    name: 'AppMedium'
+  name: 'AppMedium'
 };
 </script>

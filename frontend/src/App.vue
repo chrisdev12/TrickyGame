@@ -1,10 +1,19 @@
 <template>
-  <div>
-    <router-link to="/">
-      Home
-    </router-link> | <router-link to="/medium">
-      Medium
-    </router-link>
-    <router-view />
+  <div id="app">
+    <navbar-component />
+    <transition class="app__container" name="fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
+
+<script>
+import NavbarComponent from '@/components/Navbar.vue';
+
+export default {
+  name: 'App',
+  components: {
+    NavbarComponent,
+  },
+};
+</script>
