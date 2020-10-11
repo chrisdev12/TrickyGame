@@ -2,7 +2,8 @@ const newGame = require('./newGame');
 const editGame = require('./editGame');
 const endGame = require('./endGame');
 const verifyGame = require('./verifyGame');
-const getGame = require('./verifyGame');
+const getGame = require('./getGame');
+const getAllGame = require('./getAllGame');
 const GameSchema = require('../../models/game');
 
 class Game {
@@ -20,6 +21,14 @@ class Game {
     } = req;
 
     return getGame(id, this.GameSchema);
+  }
+
+  getAll(req) {
+    const {
+      query: { page },
+    } = req;
+
+    return getAllGame(page, this.GameSchema);
   }
 
   editOne(req) {

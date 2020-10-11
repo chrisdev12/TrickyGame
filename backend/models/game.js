@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const { Schema } = mongoose;
+
 const GameSchema = new Schema(
   {
     name: {
@@ -25,5 +27,7 @@ const GameSchema = new Schema(
     timestamps: true,
   },
 );
+
+GameSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('GameSchema', GameSchema);

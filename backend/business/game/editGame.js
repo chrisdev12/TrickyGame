@@ -1,10 +1,13 @@
+const verifyGame = require('./verifyGame');
+
 const editGame = async ({ params, body }, gameSchema) => {
   try {
     let { id } = params;
     body.movesNumber = CountPlayersMovements(body.players);
     const editGame = await gameSchema.findByIdAndUpdate({ _id: id }, { $set: body }, { new: true });
+    const verifyWinner = await verifyGame({ params, body }, gameSchema);
 
-    return editGame;
+    return verifyWinner ? verifyWinner : editGame;
   } catch (error) {
     throw error;
   }
