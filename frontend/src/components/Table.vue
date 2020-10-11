@@ -13,15 +13,35 @@
       </thead>
       <tfoot>
         <tr>
-          <th><abbr title="Pagination">Pag {{currentPage}}</abbr></th>
-          <th><abbr title="Total Pags">Total: {{totalPages}}</abbr></th>
-          <th><abbr title="Games per Pag">Per page: {{gamesPerPage}}</abbr></th>
-          <th><abbr title="Total Games">Games: {{totalGames}}</abbr></th>
           <th>
-            <label for="choosePag">Elige una página:</label>
-            <select name="choosePag" id="choosePag" multiple>
-              <option v-for="page in totalPages" :key="page" :value="page"> {{page}} </option>
-            </select>
+            <span class="tag is-info is-light">
+              Pag: {{currentPage}}
+            </span>
+          </th>
+          <th>
+            <span class="tag is-info is-light">
+              Total: {{totalPages}}
+            </span>
+          </th>
+          <th>
+            <span class="tag is-info is-light">
+              Per page: {{gamesPerPage}}
+            </span>
+          </th>
+          <th>
+            <span class="tag is-info is-light">
+              Games: {{totalGames}}
+            </span>
+          </th>
+          <th>
+            <div class="control">
+              <div class="select">
+                <select @change="searchByPage" >
+                  <option value="false">Elige una pagina</option>
+                  <option v-for="page in totalPages" :key="page" :value="page"> {{page}} </option>
+                </select>
+              </div>
+            </div>
           </th>
         </tr>
       </tfoot>
@@ -59,8 +79,8 @@
             </span>
           </th>
           <th>
-            <div v-if="!item.finished" class="columns is-multiline">
-              <button class="button is-success is-light mr-1" @click="resumeGame" :value="item._id">
+            <div v-if="!item.finished" class="columns is-multiline mt-0">
+              <button class="button is-success is-light mr-3" @click="resumeGame" :value="item._id">
                 Reanudar
               </button>
               <button class="button is-warning is-light" @click="endGame" :value="item._id">
@@ -78,7 +98,7 @@
 </template>
 
 <script>
-import getGame from "@/api/game/getGame";
+import Game from "@/api/Game";
 
 export default {
   name: 'AppHome',
@@ -88,30 +108,47 @@ export default {
       gamesPerPage: 10,
       totalGames: '',
       totalPages: [],
-      currentPage: ''
+      currentPage: '',
+      pageSelected: ''
     }
   },
   methods: {
-    transformData (data) {
-      console.log(data)
+    resumeGame({target}){
+      const id = target.value
+      this.$router.push({ name: 'Game', params: { id} })
     },
-    resumeGame(event){
-      console.log(event.target.value)
+    endGame({target}){
+      const id = target.value
+      this.endGameById(id);
     },
-    endGame(event){
-      console.log(event.target.value)
+    searchByPage({target}){
+      if (target.value == "false") return;
+      this.pageSelected =  target.value
+      this.fetchAllGames(this.pageSelected);
+    },
+    fetchAllGames(page = 1){
+      Game.getAllGames(page)
+      .then(({data: {success}}) => {
+        this.games = success.games;
+        this.gamesPerPage = success.gamesPerPage;
+        this.totalGames = success.totalGames;
+        this.totalPages = success.totalPages;
+        this.currentPage = success.currentPage;
+      }).catch((err) => {
+        console.error(err);
+      });
+    },
+    endGameById(id){
+      Game.endById(id)
+      .then(() => {
+        this.fetchAllGames(this.pageSelected);
+      }).catch((err) => {
+        console.error(err);
+      });
     }
   },
   mounted () {
-    getGame().then(({data: {success}}) => {
-      this.games = success.games;
-      this.gamesPerPage = success.gamesPerPage;
-      this.totalGames = success.totalGames;
-      this.totalPages = success.totalPages;
-      this.currentPage = success.currentPage;
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.fetchAllGames();
   },
 };
 </script>

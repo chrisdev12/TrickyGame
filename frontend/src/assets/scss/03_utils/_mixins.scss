@@ -1,0 +1,10 @@
+@mixin flexCentered($justify-content: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: center;
+}
+
+@mixin border($color: $green-light, $radius: 10px) {
+  border: 1px solid $color;
+  border-radius: $radius;
+}

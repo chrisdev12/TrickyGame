@@ -1,0 +1,15 @@
+.games-table {
+  width: 100%;
+  @include flexCentered;
+  .table {
+    th {
+      font-size: 1.3rem;
+      height: 1rem;
+      text-align: center;
+    }
+    span {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+}
