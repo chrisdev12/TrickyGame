@@ -1,4 +1,11 @@
 .home {
   height: inherit;
   background-color: inherit;
+  margin-top: 3.25rem;
+  padding-top:1rem;
+
+  main{
+    @include flexCentered;
+    flex-direction: column;
+  }
 }

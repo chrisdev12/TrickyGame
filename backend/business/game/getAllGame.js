@@ -1,7 +1,7 @@
 const getAllGames = async (page = 1, gameSchema) => {
   try {
     const options = {
-      sort: { date: -1 },
+      sort: { updatedAt: -1 },
       limit: 10,
       page: page,
     };

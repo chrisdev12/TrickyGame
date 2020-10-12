@@ -4,6 +4,8 @@ import getters from './getters';
 
 const state = {
   game_name: null,
+  create_modal: false,
+  new_game: ''
 };
 
 export default {

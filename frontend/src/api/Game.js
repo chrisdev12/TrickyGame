@@ -2,9 +2,8 @@ import httpClient from '@/api/httpClient';
 
 class Game{
 
-  createOne({game}){
-    console.log(game)
-    return httpClient.post('',{body: game});
+  createOne(game){
+    return httpClient.post('',{...game});
   }
 
   getAllGames(page = 1) {

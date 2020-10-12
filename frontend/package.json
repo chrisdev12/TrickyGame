@@ -13,8 +13,10 @@
   "dependencies": {
     "@babel/polyfill": "~7.2",
     "axios": "^0.20.0",
+    "toastr": "^2.1.4",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vue-toastr-2": "0.0.10",
     "vuetable-2": "^2.0.0-beta.4",
     "vuex": "^3.4.0"
   },

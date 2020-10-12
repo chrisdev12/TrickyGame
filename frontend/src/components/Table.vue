@@ -80,10 +80,10 @@
           </th>
           <th>
             <div v-if="!item.finished" class="columns is-multiline mt-0">
-              <button class="button is-success is-light mr-3" @click="resumeGame" :value="item._id">
+              <button class="button is-primary mr-3" @click="resumeGame" :value="item._id">
                 Reanudar
               </button>
-              <button class="button is-warning is-light" @click="endGame" :value="item._id">
+              <button class="button is-warning" @click="endGame" :value="item._id">
                 Terminar juego
               </button>
             </div>
@@ -99,6 +99,7 @@
 
 <script>
 import Game from "@/api/Game";
+import { mapState } from 'vuex';
 
 export default {
   name: 'AppHome',
@@ -110,6 +111,15 @@ export default {
       totalPages: [],
       currentPage: '',
       pageSelected: ''
+    }
+  },
+  computed: {
+    ...mapState('game', ['new_game']),
+  },
+  watch: {
+    new_game(newValue) {
+      console.log(newValue);
+      this.fetchAllGames(this.pageSelected);
     }
   },
   methods: {
