@@ -29,7 +29,7 @@
         <input @click="deleteBtnActive = !deleteBtnActive" type="checkbox">
           Estoy seguro de terminar este juego.
       </label>
-      <button :value="getCurrentGameId" @click="endGameById" class="button is-danger mt-3" :disabled="deleteBtnActive">
+      <button @click="endGameById" class="button is-danger mt-3" :disabled="deleteBtnActive">
         Terminar juego
       </button>
     </div>
@@ -72,9 +72,8 @@ export default {
       this.changeTurns();
       this.updateMovesOnGame(this.getCurrentGamePlayers);
     },
-    endGameById({target}){
-      const id = target.id
-      Game.endById(id)
+    endGameById(){
+      Game.endById(this.getCurrentGameId)
       .then(() => {
         this.$toastr.success('El juego ha sido terminado exitosamente.', 'Juego terminado');
         this.$router.push('/');

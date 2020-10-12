@@ -64,6 +64,9 @@ export default {
   methods: {
     ...mapActions('game', ['updateCreateModal']),
   },
+  computed: {
+    ...mapState('game', ['create_modal']),
+  },
   watch: {
     create_modal(newValue) {
       if (newValue) {
@@ -73,8 +76,8 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapState('game', ['create_modal']),
+  mounted () {
+    this.updateCreateModal(false)
   },
 }
 </script>

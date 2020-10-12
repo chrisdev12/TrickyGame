@@ -143,7 +143,6 @@ export default {
         this.totalGames = success.totalGames;
         this.totalPages = success.totalPages;
         this.currentPage = success.currentPage;
-        this.$toastr.success('Se han cargado todas las partidas disponibles.', 'Partidas cargadas')
       }).catch(() => this.$toastr.error('Lo sentimos, algo ha fallado. Por favor intenta terminar de nuevo', 'Terminación fallida'));
     },
     endGameById(id){
