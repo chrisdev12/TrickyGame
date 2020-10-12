@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "912a5ff1-1636-4969-8416-44c493217ff2",
+		"name": "TrickyGame",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create game",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Testing with edit\",\r\n    \"players\": [\r\n        {\r\n            \"name\": \"Christian\",\r\n            \"moves\": [],\r\n            \"inTurn\": false\r\n        },\r\n        {\r\n            \"name\": \"Javier\",\r\n            \"moves\": [],\r\n            \"inTurn\": false\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/game",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit game",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"players\": [\r\n        {\r\n            \"name\": \"Christian\",\r\n            \"moves\": [1,5,3],\r\n            \"inTurn\": true\r\n        },\r\n        {\r\n            \"name\": \"Javier\",\r\n            \"moves\": [7,8,9],\r\n            \"inTurn\": false\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/game/5f82638bb4c8faa9c8941db9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"game",
+						"5f82638bb4c8faa9c8941db9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "end game",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/game/end/5f823937527fa23bf0b6a3cf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"game",
+						"end",
+						"5f823937527fa23bf0b6a3cf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify game winner",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/game/verifyWinner/5f82638bb4c8faa9c8941db9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"game",
+						"verifyWinner",
+						"5f82638bb4c8faa9c8941db9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one game",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/game/5f82638bb4c8faa9c8941db9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"game",
+						"5f82638bb4c8faa9c8941db9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/game?page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"game"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

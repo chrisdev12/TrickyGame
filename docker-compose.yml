@@ -23,7 +23,6 @@ services:
       - mongo_db
   front:
     build: ./frontend/
-    env_file: ./frontend/.env
     container_name: "tricky_frontend"
     ports:
-      - "80:80"
+      - "2000:80"
