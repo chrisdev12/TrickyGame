@@ -12,7 +12,11 @@ class Game{
   }
 
   getById(id) {
-    return httpClient.get(`/${id}`)
+    return httpClient.get(`/getone/${id}`)
+  }
+
+  editById(id, game) {
+    return httpClient.put(`/${id}`, {...game})
   }
 
   endById(id) {

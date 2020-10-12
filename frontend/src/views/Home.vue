@@ -4,7 +4,7 @@
       <div class="notification is-link">
         <p>
           Bievenido a TrickyGame. El juego tiene unas simples reglas:
-        </p>  
+        </p>
         <div class="content">
           <ol type="A">
             <li>
@@ -24,7 +24,7 @@
         </div>
         <p>
           <i>
-            Nota: En la tabla de registros puedes terminar o reanudar el juego. 
+            Nota: En la tabla de partidas puedes terminar o reanudar un juego.
             El nombre del jugador que aparece resaltado es el que actualmente tiene el turno
           </i>
         </p>

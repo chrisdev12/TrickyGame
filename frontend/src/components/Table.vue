@@ -129,7 +129,7 @@ export default {
     },
     endGame({target}){
       const id = target.value
-      this.endGameById(id);
+      this.endGameById(id)
     },
     searchByPage({target}){
       if (target.value == "false") return;
@@ -144,17 +144,15 @@ export default {
         this.totalGames = success.totalGames;
         this.totalPages = success.totalPages;
         this.currentPage = success.currentPage;
-      }).catch((err) => {
-        console.error(err);
-      });
+        this.$toastr.success('Se han cargado todas las partidas disponibles.', 'Partidas cargadas')
+      }).catch(() => this.$toastr.error('Lo sentimos, algo ha fallado. Por favor intenta terminar de nuevo', 'Terminación fallida'));
     },
     endGameById(id){
       Game.endById(id)
       .then(() => {
         this.fetchAllGames(this.pageSelected);
-      }).catch((err) => {
-        console.error(err);
-      });
+        this.$toastr.success('El juego ha sido terminado exitosamente.', 'Juego terminado');
+      }).catch(() => this.$toastr.error('Lo sentimos, algo ha fallado. Por favor intenta terminar de nuevo', 'Terminación fallida'));
     }
   },
   mounted () {

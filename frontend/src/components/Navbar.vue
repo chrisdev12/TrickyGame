@@ -8,8 +8,11 @@
     <div class="navbar-menu">
       <div class="navbar-end">
         <div class="navbar-item">
-          <button class="button is-success is-light is-medium is-outlined" @click="updateCreateModal(true)">
+          <button v-if="$route.name=='Home'" class="button is-success is-light is-medium is-outlined" @click="updateCreateModal(true)">
             Comenzar juego
+          </button>
+          <button v-else class="button is-success is-light is-medium is-outlined">
+            {{getCurrentGameName}}
           </button>
         </div>
       </div>
@@ -29,7 +32,7 @@ export default {
     ...mapActions('game', ['updateCreateModal']),
   },
   computed: {
-    ...mapGetters('game', ['game_name']),
+    ...mapGetters('game', ['getCurrentGameName']),
   },
 };
 </script>

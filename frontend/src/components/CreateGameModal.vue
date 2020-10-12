@@ -63,11 +63,13 @@ export default {
       name: '',
       player1: {
         name: '',
-        inTurn: true
+        inTurn: true,
+        moves: []
       },
       player2: {
         name: '',
-        inTurn: false
+        inTurn: false,
+        moves: []
       },
     }
   },

@@ -1,0 +1,8 @@
+.game {
+  @include flexCentered(space-around);
+  flex-wrap: wrap;
+  height: inherit;
+  background-color: inherit;
+  margin-top: 3.25rem;
+  padding-top: 1rem;
+}

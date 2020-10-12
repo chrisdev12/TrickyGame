@@ -10,7 +10,7 @@ router.get('/:page?', (req, res) => {
     .catch((err) => error(res, 404, err));
 });
 
-router.get('/:id', (req, res) => {
+router.get('/getone/:id', (req, res) => {
   Game.getOne(req)
     .then((result) => success(res, 200, result))
     .catch(() => error(res, 404, 'Not found'));

@@ -1,0 +1,24 @@
+.gameboard {
+  width: 40rem;
+  height: 40rem;
+  @include flexCentered;
+  flex-wrap: wrap;
+  div {
+    @include flexCentered;
+    width: 33.3%;
+    height: 33.3%;
+    font-size: 1.5rem;
+  }
+  .gameboard__top {
+    border-bottom: $border;
+  }
+  .gameboard__med {
+    border-bottom: $border;
+  }
+  .gameboard__left {
+    border-right: $border;
+  }
+  .gameboard__right {
+    border-left: $border;
+  }
+}

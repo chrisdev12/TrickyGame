@@ -5,7 +5,8 @@ import getters from './getters';
 const state = {
   game_name: null,
   create_modal: false,
-  new_game: ''
+  new_game: '',
+  current_game:{}
 };
 
 export default {
