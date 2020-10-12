@@ -41,11 +41,10 @@ export default {
       fields.forEach((item) => {
         if (player1.includes(parseInt(item.innerText))) {
           item.innerText = '🍔';
-        } else if(player2.includes(item.innerText)) {
+        } else if(player2.includes(parseInt(item.innerText))) {
           item.innerText = '🍰';
         }
       });
-      console.log(fields);
     }
   },
   computed: {
@@ -56,10 +55,6 @@ export default {
       const [player1, player2] = newValue
       this.drawBoard(player1.moves,player2.moves)
     }
-  },
-  mounted () {
-    const [player1, player2] = this.getCurrentGamePlayers
-    this.drawBoard(player1.moves,player2.moves)
-  },
+  }
 };
 </script>

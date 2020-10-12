@@ -12,8 +12,9 @@ const actions = {
     .then(({data}) => commit("setCurrentGame", data.success))
     .catch((err) =>  console.error(err));
   },
-  updateOnGame({ commit }, payload) {
-    Game.editById(payload)
+  updateMovesOnGame({ commit, getters  } ,payload) {
+    const {getCurrentGameId} = getters
+    Game.editById(getCurrentGameId,payload)
     .then(({data}) => commit("setCurrentGame", data.success))
     .catch((err) =>  console.error(err));
   },

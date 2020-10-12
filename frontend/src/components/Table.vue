@@ -117,8 +117,7 @@ export default {
     ...mapState('game', ['new_game']),
   },
   watch: {
-    new_game(newValue) {
-      console.log(newValue);
+    new_game() {
       this.fetchAllGames(this.pageSelected);
     }
   },

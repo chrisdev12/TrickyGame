@@ -6,7 +6,6 @@ const mutations = {
     state.new_game = payload;
   },
   setCurrentGame(state, payload) {
-    console.log(payload)
     state.current_game = payload;
   },
 }

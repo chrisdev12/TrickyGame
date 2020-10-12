@@ -16,7 +16,7 @@ class Game{
   }
 
   editById(id, game) {
-    return httpClient.put(`/${id}`, {...game})
+    return httpClient.put(`/${id}`, {players: game})
   }
 
   endById(id) {

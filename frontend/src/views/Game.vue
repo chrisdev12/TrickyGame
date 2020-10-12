@@ -1,11 +1,21 @@
 <template>
   <div class="game">
-    <div>
-      <game-board-component />
+    <game-board-component />
+    <game-dashboard-component />
+    <div ref="modalFoundWinner" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
-    <section>
-      <game-dashboard-component />
-    </section>
+    <div ref="modalGameFinished" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
   </div>
 </template>
 
@@ -20,8 +30,20 @@ export default {
     GameBoardComponent,
     GameDashboardComponent
   },
+  computed: {
+    ...mapGetters('game', ['getWinnerGame','getGameMovesPlayed']),
+  },
   methods: {
     ...mapActions('game', ['updateCurrentGame']),
+  },
+  watch: {
+    getWinnerGame(newValue) {
+      console.log(newValue);
+      console.log("encontramos un ganador en game");
+    },
+    getGameMovesPlayed(newValue) {
+      console.log(newValue);
+    }
   },
   beforeMount () {
     const { id } = this.$route.params;
